@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<input type="file" name="file" id="upload_file" multiple="multiple" />
+  <!--<input type="hidden" name="upload_base" id="upload_base" />-->
+  <span>图片预览</span>
+  <img id="upload_show" />
+
+	</body>
+	
+	<script type="text/javascript">
+		
+		document.getElementById('upload_file').onchange = function(){
+        var fileObj = this.files;
+        var reader = new FileReader();
+        // 转base64
+        reader.readAsDataURL(fileObj[0]);
+        reader.onload = function(){
+            // 将转换后的编码存入src实现预览
+            document.getElementById("upload_show").setAttribute("src", this.result);
+            // 将转换后的结果作为 type为hidden 的 input 的值，提交给后台
+//          document.getElementById("upload_base").value = this.result;
+       }
+ }
+
+	</script>
+</html>
